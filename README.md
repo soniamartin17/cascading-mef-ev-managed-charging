@@ -1,5 +1,7 @@
 # Cascading Marginal Emissions Factor Charging Control
 
+[![DOI](https://zenodo.org/badge/706858319.svg)](https://zenodo.org/doi/10.5281/zenodo.13356990)
+
 ## Problem Statement
 
 Managing electric vehicle (EV) charging to reduce emissions benefits both EVs and the grid: (1) to further decarbonize transportation and make the switch from an ICE to an EV better; and (2) to use the flexibility in EV charging as a tool to acclerate the grid's transition and the integration of lower carbon resources. 
@@ -53,9 +55,13 @@ Choose which of the optimization scenarios to run: 2020 (unlabeled) or 2030, and
 ## Package Versions
 
 Python 3.9.0
+
 Pandas 1.3.1
+
 Scipy 1.6.3
+
 CVXPY 1.2.1
+
 Scikit-learn: 1.4.0
 
 Note: the exact Python and Pandas versions are important for the grid object "pickling".
