@@ -1,0 +1,213 @@
+respondent_id,respondent_name,eia_code,nerc
+101,"PowerSouth Energy Cooperative (Alabama Electric Cooperative, Inc.)              ",189,SERC
+102,Alabama Power Company                                                           ,195,SERC
+103,Cube Hydro Carolinas Yadkin                                                     ,317,SERC
+104,Allete (Minnesota Power)                                                        ,12647,MRO
+105,Alliant Energy-East                                                             ,20856,MRO
+106,Alliant Energy-West                                                             ,9392,MRO
+107,Ameren (Illinois Power Co. Control Area)                                        ,9208,SERC
+108,Ameren Corporation Control Area                                                 ,19436,SERC
+109,Ameren CILCO                                                                    ,3252,SERC
+110,"American Electric Power Company, Inc.                                           ",829,RFC
+111,"American Municipal Power-Ohio, Inc.                                             ",40577,RFC
+112,Anchorage Municipal Light & Power                                               ,599,ASCC
+113,KCP&L Greater Missouri Operations Company (Former Aquila Networks MPS)          ,12698,SERC
+114,Aquila Networks (West Plains Energy - Kansas)                                   ,3285,SPP
+115,"Arizona Electric Power Cooperative, Inc.                                        ",796,WECC
+116,Arizona Public Service Company                                                  ,803,WECC
+118,"Associated Electric Cooperative, Inc.                                           ",924,SERC
+119,Avista Corporation                                                              ,20169,WECC
+120,Big Rivers Electric Corporation                                                 ,1692,SERC
+121,Black Hills Corporation                                                         ,19545,WECC
+122,"Bonneville Power Administration, USDOE                                          ",1738,WECC
+123,Boston Edison Company (NSTAR)                                                   ,1998,NPCC
+124,"Buckeye Power, Inc.                                                             ",7004,RFC
+125,California Independent System Operator                                          ,229,WECC
+126,Cambridge Electric Light Company                                                ,2886,NPCC
+128,"Central Electric Power Cooperative, Inc.                                        ",40218,SERC
+133,"Chugach Electric Association, Inc.                                              ",3522,ASCC
+134,Duke Energy Corp.                                                               ,3260,SERC
+135,City of Burbank                                                                 ,2507,WECC
+136,City of Homestead                                                               ,8795,FRCC
+137,"City of Independence, MO                                                        ",9231,SERC
+138,City of Lafayette Utilities System                                              ,9096,SERC
+139,"City of Tacoma, Dept. of Public Utilities                                       ",18429,WECC
+140,City of Tallahassee                                                             ,18445,FRCC
+141,"City Utilities of Springfield, MO                                               ",17833,SPP
+142,Cleco Corporation                                                               ,3265,SPP
+143,Colorado Springs Utilities                                                      ,3989,WECC
+144,Columbia (MO) Water & Light                                                     ,4045,SERC
+145,Commonwealth Electric Company (NSTAR)                                           ,4089,NPCC
+146,Consolidated Edison Co. of NY Inc.                                              ,4226,NPCC
+147,Consumers Energy Company                                                        ,4254,SERC
+148,Corn Belt Power Cooperative                                                     ,4363,MRO
+149,Dairyland Power Cooperative                                                     ,4716,MRO
+150,"Dayton Power & Light Company, The                                               ",4922,RFC
+151,Decatur Utilities                                                               ,4958,SERC
+152,Detroit Edison Company                                                          ,5109,RFC
+153,"Duke Energy Control Area Services, LLC (Arlington Valley WECC AZ)               ",973,WECC
+154,"Duke Energy Control Area Services, LLC (Gila River Maricopa Arizona)            ",55306,WECC
+155,"Duke Energy Control Area Services, LLC (Vermillion)                             ",55111,RFC
+156,City of North Little Rock                                                       ,13718,SERC
+157,"Duke Energy Carolinas, LLC                                                      ",5416,SERC
+159,East Kentucky Power Cooperative                                                 ,5580,RFC
+160,El Paso Electric Company                                                        ,5701,WECC
+161,"Electric Energy, Inc.                                                           ",5748,SERC
+162,Electric Power Board of Chattanooga                                             ,3408,SERC
+163,Empire District Electric Company (the)                                          ,5860,SPP
+164,Entergy Corporation/Services  (Entergy System)                                  ,12506,SERC
+165,ERCOT                                                                           ,5723,TRE
+166,Eugene Water & Electric Board                                                   ,6022,WECC
+167,FirstEnergy Corporation                                                         ,32208,RFC
+169,Florida Municipal Power Agency                                                  ,6567,FRCC
+170,Florida Municipal Power Pool                                                    ,14610,FRCC
+171,Florida Power & Light Company                                                   ,6452,FRCC
+172,Gainesville Regional Utilities                                                  ,6909,FRCC
+173,"Golden Spread Electric Cooperative, Inc.                                        ",7349,SPP
+174,Grand River Dam Authority                                                       ,7490,SPP
+175,Great River Energy                                                              ,19514,MRO
+176,Green Mountain Power Corporation                                                ,7601,NPCC
+177,Greenville Utilities Commission                                                 ,7639,SERC
+178,"Hawaiian Electric Company, Inc                                                  ",19547,HICC
+179,"Hoosier Energy REC, Inc.                                                        ",9267,RFC
+180,Idaho Power Company                                                             ,9191,WECC
+182,Imperial Irrigation District                                                    ,9216,WECC
+183,Indiana Municipal Power Agency                                                  ,9234,RFC
+184,Indianapolis Power & Light Company                                              ,9273,RFC
+185,ISO New England Inc.                                                            ,13434,NPCC
+186,JEA                                                                             ,9617,FRCC
+187,Kansas City Board of Public Utilities & Wyandotte County                        ,9996,SPP
+188,Kansas City Power & Light Company                                               ,10000,SPP
+189,Kansas Gas & Electric (KG&E) a Westar Energy company                            ,10005,SPP
+190,Westar Energy (KPL)                                                             ,10015,SPP
+191,Lakeland Electric                                                               ,10623,FRCC
+193,Lincoln Electric System                                                         ,11018,MRO
+194,Los Angeles Department of Water and Power                                       ,11208,WECC
+195,Louisiana Energy & Power Authority                                              ,26253,SERC
+196,Louisiana Generating                                                            ,11252,SERC
+197,Louisville Gas & Electric and Kentucky Utilities                                ,11249,SERC
+198,Madison Gas & Electric Company                                                  ,11479,RFC
+199,Massachusetts Municipal Wholesale                                               ,11806,NPCC
+200,"Memphis Light, Gas and Water                                                    ",12293,SERC
+201,Metropolitan Water District of Southern California                              ,12397,WECC
+202,Michigan Electric Power Coordinated Center                                      ,12427,RFC
+203,MidAmerican Energy Company                                                      ,12431,MRO
+204,Mid-Continent Area Power Pool                                                   ,11625,MRO
+206,Modesto Irrigation District                                                     ,12745,WECC
+207,Montana-Dakota Utilities Company                                                ,12819,MRO
+208,Muscatine Power & Water                                                         ,13143,MRO
+209,Nebraska Public Power District                                                  ,13337,MRO
+210,Nevada Power Company                                                            ,13407,WECC
+211,"New York Independent System Operator, Inc.                                      ",13501,NPCC
+212,New York State Electric & Gas Corporation                                       ,13511,NPCC
+213,Northeast Texas Electric Cooperative                                            ,13670,SPP
+214,Northeast Utilities Service Company                                             ,13356,NPCC
+215,Northern Indiana Public Service Company                                         ,13756,RFC
+216,Northern States Power Company                                                   ,13781,MRO
+217,NorthWestern Energy                                                             ,12825,WECC
+218,Oglethorpe Power Company                                                        ,13994,SERC
+219,Ohio Valley Electric Corporation & Indiana-Kentucky Electric Corp.              ,14015,RFC
+220,Oklahoma Gas & Electric Company                                                 ,14063,SPP
+221,Oklahoma Municipal Power Authority                                              ,14077,SPP
+222,"Old Dominion Elec. Coop., Inc.-Dom VA Pwr Planning                              ",40229,SERC
+223,Omaha Public Power District                                                     ,14127,MRO
+224,"Orange & Rockland Utils., Inc.                                                  ",14154,NPCC
+225,Orlando Utilities Commission                                                    ,14610,FRCC
+226,Otter Tail Power Company                                                        ,14232,MRO
+227,Pacific Gas and Electric Company                                                ,14328,WECC
+228,PacifiCorp - East                                                               ,14354,WECC
+229,PacifiCorp - West                                                               ,14355,WECC
+230,PJM Interconnection LLC                                                         ,14725,RFC
+231,Platte River Power Authority                                                    ,15143,WECC
+232,Portland General Electric Company                                               ,15248,WECC
+233,Progress Energy (Carolina Power & Light Company)                                ,3046,SERC
+234,Progress Energy (Florida Power Corp.)                                           ,6455,FRCC
+235,Public Service Company of Colorado                                              ,15466,WECC
+236,Public Service Company of New Mexico                                            ,15473,WECC
+237,PUD No. 1 of Chelan County                                                      ,3413,WECC
+238,PUD No. 1 of Douglas County                                                     ,5326,WECC
+239,PUD No. 2 of Grant County                                                       ,14624,WECC
+240,"Puget Sound Energy, Inc.                                                        ",15500,WECC
+241,Rochester Gas and Electric Corporation                                          ,16183,NPCC
+242,Reedy Creek Improvement District                                                ,54849,FRCC
+243,Sacramento Municipal Utility District                                           ,16534,WECC
+244,Salt River Project                                                              ,16572,WECC
+245,Sam Rayburn G&T Electric Coop.                                                  ,40233,SPP
+246,San Diego Gas & Electric Company                                                ,16609,WECC
+247,Seattle City Light                                                              ,16868,WECC
+248,"Seminole Electric Cooperative, Inc.                                             ",21554,FRCC
+249,Sierra Pacific Resources                                                        ,17166,WECC
+250,Dominion Energy South Carolina                                                  ,17539,SERC
+251,South Carolina Public Service Authority                                         ,17543,SERC
+252,South Mississippi Electric Power Association                                    ,17568,SERC
+253,Southern Company                                                                ,18195,SERC
+254,Southern Illinois Power Coop                                                    ,17632,SERC
+255,Southern Indiana Gas & Electric Company                                         ,17633,RFC
+256,Southern Minnesota Municipal Power Agency                                       ,40580,MRO
+257,Southwest Power Pool (SPP)                                                      ,17690,SPP
+258,Southwestern Power Administration (DOE)                                         ,17716,SPP
+259,Southwestern Public Service Company (Xcel)                                      ,17718,SPP
+260,Square Butte Electric Coop                                                      ,17858,MRO
+261,Sunflower Electric Power Corporation                                            ,18315,SPP
+262,Tampa Electric Company                                                          ,18454,WECC
+263,Tennessee Valley Authority                                                      ,18642,SERC
+264,"Tex-La Electric Cooperative of Texas, Inc.                                      ",18679,SERC
+265,"Tri-State G & T Assn., Inc.                                                     ",30151,WECC
+266,Tucson Electric Power Company                                                   ,24211,WECC
+267,Turlock Irrigation District                                                     ,19281,WECC
+268,United Illuminating Company                                                     ,19497,NPCC
+269,Upper Peninsula Power Company                                                   ,19578,MRO
+271,"Wabash Valley Power Association, Inc.                                           ",40211,RFC
+272,Western Area Power Admin - Upper Missouri-East (Upper Great Plains Region operat,28502,MRO
+273,Western Area Power Administration - Colorado-Missouri Control Area (Rocky Mtn Re,28503,WECC
+274,Western Area Power Administration - Lower Colorado control area  (Desert Southwe,19610,WECC
+275,Western Area Power Administration - Upper Missouri West (Upper Great Plains Regi,25471,WECC
+277,Western Farmers Electric Cooperative                                            ,20447,SPP
+278,Wisconsin Electric Power Company                                                ,20847,MRO
+279,Wisconsin Public Service Corporation                                            ,20860,MRO
+280,"Wolverine Power Supply Coop., Inc.                                              ",20910,RFC
+281,City of Springfield                                                             ,17828,SPP
+282,Wisconsin Public Power Inc.                                                     ,20858,MRO
+283,Minnesota Municipal Power Agency                                                ,12667,MRO
+284,Missouri River Energy Services                                                  ,12710,MRO
+285,"Minnkota Power Cooperative, Inc.                                                ",12658,MRO
+286,Gen-Sys Energy                                                                  ,21584,MRO
+287,Basin Electric Power Cooperative                                                ,1307,MRO
+288,Batesville Balancing Authority                                                  ,9543,SERC
+289,City of Conway                                                                  ,4280,SERC
+290,City of Ruston                                                                  ,16463,SERC
+291,Union Power Partners                                                            ,55380,SPP
+292,City of West Memphis                                                            ,20383,SERC
+293,New Harquahala Generating Station                                               ,55372,WECC
+294,City of Benton                                                                  ,1581,SPP
+295,"Old Dominion Elec. Coop., Inc.-Delmarva P&L Planning                            ",0,RFC
+296,Georgia Power Company                                                           ,7140,SERC
+297,Mississippi Power Company                                                       ,12686,SERC
+298,Gulf Power Company                                                              ,7801,SERC
+299,Southern Power Company                                                          ,16687,SERC
+300,NorthWestern Energy (South Dakota)                                              ,13809,MRO
+301,PJM Interconnection Eastern Hub                                                 ,0,PJM
+302,PJM Interconnection Western Hub                                                 ,0,PJM
+303,PJM Interconnection Illinois Hub                                                ,0,PJM
+304,PJM Interconnection North Illinois Hub                                          ,0,PJM
+305,PJM Interconnection Dominion Hub                                                ,0,PJM
+306,PJM Interconnection AEP-Dayton Hub                                              ,0,PJM
+307,PacifiCorp - Part II Sch 2 (East & West combined)                               ,0,WECC
+308,City of St. Cloud                                                               ,17867,MRO
+309,Michigan Electric Powr Coor. Center - Detroit                                   ,0,RFC
+310,Southern California Edison Company                                              ,17609,WECC
+311,Arkansas Electric Cooperative Corporation                                       ,807,SERC
+312,Glacier Wind Balancing Authority                                                ,0,WECC
+313,Plum Point Energy Associates (PLUM) -SERC REGION                                ,56456,SERC
+315,Griffith Energy (GRIF)                                                          ,55124,RFC
+320,City of Osceola (OMLP) - SERC                                                   ,14216,SERC
+321,MISO                                                                            ,56669,MRO
+322,Constellation Energy Control and Dispatch - for Brazos                          ,2172,SERC
+323,"Gridforce Energy Management, LLC                                                ",0,TRE
+324,"NaturEner Wind Watch, LLC                                                       ",57995,WECC
+325,New Smyrna Beach Utilities Commission                                           ,56152,FRCC
+326,City of Lake Worth                                                              ,10620,FRCC
+327,City of Vero Beach                                                              ,19804,WECC
+328,Municipal Electric Authority of Georgia                                         ,13100,SERC
+329,East Texas Electric Cooperative                                                 ,0,TRE
+330,Avangrid Renewables                                                             ,14369,WECC
