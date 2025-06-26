@@ -1,6 +1,6 @@
 # Cascading Marginal Emissions Factor Managed Charging
 
-[![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.14775063.svg)](https://doi.org/10.5281/zenodo.14775063)
+[![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.15748366.svg)](https://doi.org/10.5281/zenodo.15748366)
 
 ## Problem Statement
 
@@ -78,7 +78,7 @@ Mosek 11.0.22
 
 ### Optimization Solver
 
-Optimization with CVXPY is run with the MOSEK solver. The license is available for free for academic users and offers a 30 day free trial for private users. Please see https://www.mosek.com/resources/getting-started/ to download a license. The .lic file from MOSEK must be stored in the folder for CVXPY to correctly run. There is a code block that will print an error message if the license is not present. 
+Optimization with CVXPY is run with the MOSEK solver. The license is available for free for academic users and offers a 30 day free trial for private users. Please see https://www.mosek.com/resources/getting-started/ to download a license. The .lic file from MOSEK must be stored in the correct folder for CVXPY to correctly run. There is a code block that will print an error message if the license is not present. 
 
 
 ### Structure
