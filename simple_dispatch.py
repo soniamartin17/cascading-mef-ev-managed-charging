@@ -95,7 +95,7 @@ class GridModel(object):
             
     def add_generators(self, future_year):
         '''Duplicate generators to simulate new additions in the future WECC grid'''
-        self.additions_df = pd.read_csv('Data/generator_additions.csv', index_col=0)
+        self.additions_df = pd.read_csv('GridInputData/generator_additions.csv', index_col=0)
         gd_short_final = copy.deepcopy(self.gd)
         added_units = self.additions_df[self.additions_df['Year']<future_year]['orispl_unit'].values
         for i, val in enumerate(added_units):
@@ -108,7 +108,7 @@ class GridModel(object):
         
     def drop_generators(self, future_year):
         '''Drop generators to match announced retirements in the WECC grid'''
-        self.retirements_df = pd.read_csv('Data/generator_retirements.csv', index_col=0)
+        self.retirements_df = pd.read_csv('GridInputData/generator_retirements.csv', index_col=0)
         gd_short_final = copy.deepcopy(self.gd)
         dropped_units = self.retirements_df[self.retirements_df['retirement_year']<future_year]['orispl_unit'].values
         gd_short_final.df = gd_short_final.df[~gd_short_final.df['orispl_unit'].isin(dropped_units)].copy(deep=True).reset_index(drop=True)

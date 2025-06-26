@@ -11,7 +11,7 @@ import copy
 
 class ChargingData(object):
     ''''Process raw vehicle charging and driving data'''
-    def __init__(self, df):
+    def __init__(self, df, chg_timer = False):
         df.datetime = pd.to_datetime(df.datetime)
         df = self.round_secondsTOminutes(df)
         self.df = df
@@ -23,6 +23,7 @@ class ChargingData(object):
         self.l4_rate = 150.
         self.battcap = 83.6 # kWh
         self.eta = .1
+        self.chg_timer = chg_timer #boolean to indicate if charging timer is used
         
     def define_weeks(self, min_date, max_date):
         ''''Find all Mondays in input date range'''
@@ -87,27 +88,45 @@ class ChargingData(object):
         #i.e., car charged to 100% SOC before it was unplugged. 
         #example: car at 80% plugged in at 8pm and unplugged at 8am. Without processing, this would show a charging rate < L1. 
         #with processing, we set the charging profile to charge at L2 until 100% SOC then at 0 kW for the remaining time.
-        for i, ind_chg in enumerate(charge_inds):            
+        for i, ind_chg in enumerate(charge_inds):
+
             #if the average charging rate is a different level than the max rate OR if avg charge bin = bin(max_chg)
             if self.bin_rates(tmp.loc[ind_chg, 'Average_Charging_Rate_kW'])<=self.bin_rates(tmp.loc[ind_chg, 'Max_Charging_Rate_kW']) or np.isnan(tmp.loc[ind_chg, 'Average_Charging_Rate_kW']):
-                #find charging rate: 
-                #if avg rate and max rate are both L3, use avg rate
-                #if avg rate and max rate are both l1, use l1
-                #if avg rate and max rate are both l2, use l2
-                #if avg rate is l2 and max rate is l3, use l2
-                #if avg rate is l1 and max rate is l3, use l2
-                #if avg rate is l1 and max rate is l2, use l2
                 rate = np.fmax(tmp.loc[ind_chg, 'Average_Charging_Rate_kW'], np.minimum(self.bin_rates(tmp.loc[ind_chg, 'Max_Charging_Rate_kW']), self.l2_rate/(1+self.eta)))
                 #solve for actual charge time in minutes given above rate
                 actual_elapsed_chg_time = np.round(60* (1/100)*self.battcap*(tmp.loc[end_inds[i], 'SOC'] - tmp.loc[ind_chg, 'SOC']) / rate, decimals=2)
-                placeholder_time = tmp.loc[ind_chg, 'datetime'] + datetime.timedelta(minutes=actual_elapsed_chg_time)
-                SOC_intermediate = (np.floor(actual_elapsed_chg_time) * rate)*100*(1/60)*(1/self.battcap) +  tmp.loc[ind_chg, 'SOC']
-                placeholder_time = placeholder_time - datetime.timedelta(seconds=placeholder_time.second) - datetime.timedelta(microseconds=placeholder_time.microsecond) + datetime.timedelta(minutes=1)
-                listed_elapsed = datetime.timedelta.total_seconds(tmp.loc[end_inds[i], 'datetime']-tmp.loc[ind_chg, 'datetime'])/60
-                #if the calculated charging time is less than unprocessed data vale, add an SOC value to demarcate the actual end of session
-                if actual_elapsed_chg_time < listed_elapsed:
-                    fulldf.loc[fulldf.datetime==placeholder_time - datetime.timedelta(minutes=1), 'SOC'] = SOC_intermediate
-                    fulldf.loc[fulldf.datetime==placeholder_time, 'SOC'] = tmp.loc[end_inds[i], 'SOC']
+                timer_start = datetime.datetime(tmp.loc[end_inds[i], 'datetime'].year, tmp.loc[end_inds[i], 'datetime'].month, tmp.loc[end_inds[i], 'datetime'].day, 0, 0)
+
+                chg_timer_condition  = datetime.timedelta.total_seconds(tmp.loc[end_inds[i], 'datetime'] - timer_start) / 60 > actual_elapsed_chg_time
+
+                #check if the charging session happens in the evening and is "eligible" for a charging timer
+                if self.chg_timer and tmp.loc[ind_chg, 'datetime'].hour >= 18 and tmp.loc[end_inds[i], 'datetime'].hour < 10 and chg_timer_condition:
+                    #if so, set the charging timer times
+                    fulldf.loc[fulldf.datetime==timer_start, 'SOC'] = tmp.loc[ind_chg, 'SOC'] #start time
+                    placeholder_end_time = timer_start + datetime.timedelta(minutes=actual_elapsed_chg_time)
+                    SOC_intermediate = (np.floor(actual_elapsed_chg_time) * rate)*100*(1/60)*(1/self.battcap) +  tmp.loc[ind_chg, 'SOC']
+                    placeholder_end_time = placeholder_end_time - datetime.timedelta(seconds=placeholder_end_time.second) - datetime.timedelta(microseconds=placeholder_end_time.microsecond) + datetime.timedelta(minutes=1)
+                    fulldf.loc[fulldf.datetime==placeholder_end_time - datetime.timedelta(minutes=1), 'SOC'] = SOC_intermediate
+                    fulldf.loc[fulldf.datetime==placeholder_end_time, 'SOC'] = tmp.loc[end_inds[i], 'SOC']
+                    
+                else:
+                    #find charging rate: 
+                    #if avg rate and max rate are both L3, use avg rate
+                    #if avg rate and max rate are both l1, use l1
+                    #if avg rate and max rate are both l2, use l2
+                    #if avg rate is l2 and max rate is l3, use l2
+                    #if avg rate is l1 and max rate is l3, use l2
+                    #if avg rate is l1 and max rate is l2, use l2
+                    listed_elapsed = datetime.timedelta.total_seconds(tmp.loc[end_inds[i], 'datetime']-tmp.loc[ind_chg, 'datetime'])/60 #in minutes
+                    #if the calculated charging time is less than unprocessed data value, add an SOC value to demarcate the actual end of session
+                    if actual_elapsed_chg_time < listed_elapsed:
+
+                        placeholder_time = tmp.loc[ind_chg, 'datetime'] + datetime.timedelta(minutes=actual_elapsed_chg_time) #the end of the charging session
+                        SOC_intermediate = (np.floor(actual_elapsed_chg_time) * rate)*100*(1/60)*(1/self.battcap) +  tmp.loc[ind_chg, 'SOC']
+                        placeholder_time = placeholder_time - datetime.timedelta(seconds=placeholder_time.second) - datetime.timedelta(microseconds=placeholder_time.microsecond) + datetime.timedelta(minutes=1)
+
+                        fulldf.loc[fulldf.datetime==placeholder_time - datetime.timedelta(minutes=1), 'SOC'] = SOC_intermediate
+                        fulldf.loc[fulldf.datetime==placeholder_time, 'SOC'] = tmp.loc[end_inds[i], 'SOC']
 
             
         #linearly interpolate to fill in remaining missing SOC values so dataframe is not sparse             

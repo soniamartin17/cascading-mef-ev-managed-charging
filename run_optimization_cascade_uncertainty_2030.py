@@ -39,6 +39,7 @@ year2 = int(sys.argv[4])
 day1 = int(sys.argv[5])
 day2 = int(sys.argv[6])
 
+
 min_date = datetime.date(year1, month1, day1)
 max_date = datetime.date(year2, month2, day2)
 period_string = str(min_date) + '_to_' + str(max_date)
@@ -53,10 +54,11 @@ print('Number of vehicles in the dataset: ', num_vehicles)
 
 
 results_date = '20250604' #set simulation date for saving files
-folder = folder_root + '/MEF_2030_Cascade/'
+folder = folder_root + '/MEF_2030_Uncert/'
+
 for run_number in range(15): #iterate to make multiple runs
     nev_set = [1000, 100000, 500000, 1000000, 1500000, 2000000] #run for different numbers of added EVs
-    for n_evs_added in nev_set: 
+    for n_evs_added in nev_set:
         print('-----'*5)
         print('Number of EVs added: ', n_evs_added)
 
@@ -67,13 +69,14 @@ for run_number in range(15): #iterate to make multiple runs
         if not os.path.isdir(folder+'/'+folder_numevs):
             os.mkdir(folder+'/'+folder_numevs)
         if not os.path.isdir(folder+'/'+folder_numevs+'/Uncontrolled'):
-            os.mkdir(folder+'/'+folder_numevs+'/Uncontrolled')
+            os.mkdir(folder+'/'+folder_numevs+'/Uncontrolled') 
 
         #set MEF type and access level
         mef_type = 'varying'
-        access_series_name ='access_series' #or 'plugged_series'
+        access_series_name ='plugged_series' #or 'access_series'
         control_name = all_control_names[mef_type]
         control_folder_name = control_name+'_'+access_series_name
+        
         if not os.path.isdir(folder+'/'+folder_numevs+'/Controlled_'+control_folder_name):
             os.mkdir(folder+'/'+folder_numevs+'/Controlled_'+control_folder_name)
         if not os.path.isdir(folder+'/'+folder_numevs+'/Controlled_'+control_folder_name + '/demand_details'):
@@ -106,25 +109,25 @@ for run_number in range(15): #iterate to make multiple runs
         #calculate aggregate uncontrolled demand profile for all vehicles, split into different charging levels
         for week in range(data.num_weeks):
             all_uncontrolled_demand_l1 = all_uncontrolled_demand.copy(deep=True)
-            all_uncontrolled_demand_l1.iloc[:,np.arange(1, num_vehicles+1)] = all_uncontrolled_demand_l1.iloc[:,np.arange(1, num_vehicles+1)].where(all_uncontrolled_demand_l1.iloc[:,np.arange(1, num_vehicles+1)]<l1_rate/(1+eta), 0)
+            all_uncontrolled_demand_l1.iloc[:,np.arange(1, num_vehicles + 1)] = all_uncontrolled_demand_l1.iloc[:,np.arange(1, num_vehicles + 1)].where(all_uncontrolled_demand_l1.iloc[:,np.arange(1, num_vehicles + 1)]<l1_rate/(1+eta), 0)
 
             all_uncontrolled_demand_l2 = all_uncontrolled_demand.copy(deep=True)
-            all_uncontrolled_demand_l2.iloc[:,np.arange(1, num_vehicles+1)] = all_uncontrolled_demand_l2.iloc[:,np.arange(1, num_vehicles+1)].where((all_uncontrolled_demand_l2.iloc[:,np.arange(1, num_vehicles+1)]<=(l2_rate/(1+eta)+.01)), 0)
+            all_uncontrolled_demand_l2.iloc[:,np.arange(1, num_vehicles + 1)] = all_uncontrolled_demand_l2.iloc[:,np.arange(1, num_vehicles + 1)].where((all_uncontrolled_demand_l2.iloc[:,np.arange(1, num_vehicles + 1)]<=(l2_rate/(1+eta)+.01)), 0)
 
             all_uncontrolled_demand_l3 = all_uncontrolled_demand.copy(deep=True)
-            all_uncontrolled_demand_l3.iloc[:,np.arange(1, num_vehicles+1)]=all_uncontrolled_demand_l3.iloc[:,np.arange(1, num_vehicles+1)].where(all_uncontrolled_demand_l3.iloc[:,np.arange(1, num_vehicles+1)]>(l2_rate/(1+eta)+.01), 0)
+            all_uncontrolled_demand_l3.iloc[:,np.arange(1, num_vehicles + 1)]=all_uncontrolled_demand_l3.iloc[:,np.arange(1, num_vehicles + 1)].where(all_uncontrolled_demand_l3.iloc[:,np.arange(1, num_vehicles + 1)]>(l2_rate/(1+eta)+.01), 0)
 
             #obtain time intervals and driver frequency
             #inds represents time
             #dot_values represent number of each driver selected
             inds = all_uncontrolled_demand.loc[(all_uncontrolled_demand.datetime.dt.date >= data.mondays[week])&(all_uncontrolled_demand.datetime.dt.date <= data.sundays[week])].index
-            dot_values = indices_df[data.mondays[week]].value_counts().sort_index().reindex(np.arange(1, num_vehicles+1), fill_value=0)
+            dot_values = indices_df[data.mondays[week]].value_counts().sort_index().reindex(np.arange(1, num_vehicles + 1), fill_value=0)
 
             #multiply drivers by frequency
-            all_uncontrolled_demand.loc[inds, 'total_demand'] = all_uncontrolled_demand.loc[inds, np.arange(1, num_vehicles+1).astype(str)].multiply(dot_values.values).sum(axis=1)
-            all_uncontrolled_demand.loc[inds, 'l1_demand'] = all_uncontrolled_demand_l1.loc[inds, np.arange(1, num_vehicles+1).astype(str)].multiply(dot_values.values).sum(axis=1)
-            all_uncontrolled_demand.loc[inds, 'l2_demand'] = all_uncontrolled_demand_l2.loc[inds, np.arange(1, num_vehicles+1).astype(str)].multiply(dot_values.values).sum(axis=1)
-            all_uncontrolled_demand.loc[inds, 'l3_demand'] = all_uncontrolled_demand_l3.loc[inds, np.arange(1, num_vehicles+1).astype(str)].multiply(dot_values.values).sum(axis=1)
+            all_uncontrolled_demand.loc[inds, 'total_demand'] = all_uncontrolled_demand.loc[inds, np.arange(1, num_vehicles + 1).astype(str)].multiply(dot_values.values).sum(axis=1)
+            all_uncontrolled_demand.loc[inds, 'l1_demand'] = all_uncontrolled_demand_l1.loc[inds, np.arange(1, num_vehicles + 1).astype(str)].multiply(dot_values.values).sum(axis=1)
+            all_uncontrolled_demand.loc[inds, 'l2_demand'] = all_uncontrolled_demand_l2.loc[inds, np.arange(1, num_vehicles + 1).astype(str)].multiply(dot_values.values).sum(axis=1)
+            all_uncontrolled_demand.loc[inds, 'l3_demand'] = all_uncontrolled_demand_l3.loc[inds, np.arange(1, num_vehicles + 1).astype(str)].multiply(dot_values.values).sum(axis=1)
 
 
             total_uncontrolled_demand = pd.concat((total_uncontrolled_demand, all_uncontrolled_demand.loc[inds, ['datetime', 'total_demand', 'l1_demand', 'l2_demand', 'l3_demand']]), ignore_index=True)
@@ -158,8 +161,8 @@ for run_number in range(15): #iterate to make multiple runs
         #instantiate grid model object and add demand
         grid_u = GridModel(year=future_year, reference_year=year, added_evs=False)
         grid_u.add_demand(added_demand_mw)
-        minweek = np.maximum(total_uncontrolled_demand.loc[total_uncontrolled_demand.datetime.dt.year==year].datetime.dt.week.min()-2, 0)
-        maxweek = np.minimum(total_uncontrolled_demand.loc[total_uncontrolled_demand.datetime.dt.year==year].datetime.dt.week.max()+2, 51)
+        minweek = np.maximum(total_uncontrolled_demand.loc[total_uncontrolled_demand.datetime.dt.year==year].datetime.dt.isocalendar().week.min()-2, 0)
+        maxweek = np.minimum(total_uncontrolled_demand.loc[total_uncontrolled_demand.datetime.dt.year==year].datetime.dt.isocalendar().week.max()+2, 51)
         print('Weeks: ', minweek, maxweek)
 
         #run grid dispatch
@@ -198,12 +201,12 @@ for run_number in range(15): #iterate to make multiple runs
             #for each group, we dispatch with a new "added demand". This includes controlled demand from all vehicles in previous groups, as well as the uncontrolled demand from the current group.
             for week in range(data.num_weeks):
                 if signal_num==0:
-                    dot_values_frac[str(week)] = indices_df[data.mondays[week]][:int(fraction*n_evs_added)].value_counts().sort_index().reindex(np.arange(1, num_vehicles+1), fill_value=0)
+                    dot_values_frac[str(week)] = indices_df[data.mondays[week]][:int(fraction*n_evs_added)].value_counts().sort_index().reindex(np.arange(1, num_vehicles + 1), fill_value=0)
                 else:
-                    dot_values_frac[str(week)] = indices_df[data.mondays[week]][int(uncontrolled_fraction[signal_num-1]*n_evs_added):int(fraction*n_evs_added)].value_counts().sort_index().reindex(np.arange(1, num_vehicles+1), fill_value=0)
+                    dot_values_frac[str(week)] = indices_df[data.mondays[week]][int(uncontrolled_fraction[signal_num-1]*n_evs_added):int(fraction*n_evs_added)].value_counts().sort_index().reindex(np.arange(1, num_vehicles + 1), fill_value=0)
                     
                 inds = all_uncontrolled_demand.loc[(all_uncontrolled_demand.datetime.dt.date >= data.mondays[week])&(all_uncontrolled_demand.datetime.dt.date <= data.sundays[week])].index
-                all_uncontrolled_demand.loc[inds, 'frac_demand'] = all_uncontrolled_demand.loc[inds, np.arange(1, num_vehicles+1).astype(str)].multiply(dot_values_frac[str(week)].values).sum(axis=1)
+                all_uncontrolled_demand.loc[inds, 'frac_demand'] = all_uncontrolled_demand.loc[inds, np.arange(1, num_vehicles + 1).astype(str)].multiply(dot_values_frac[str(week)].values).sum(axis=1)
                 fraction_uncontrolled_demand = pd.concat((fraction_uncontrolled_demand, all_uncontrolled_demand.loc[inds, ['datetime', 'frac_demand']]), ignore_index=True)
 
             #convert to hourly
@@ -212,13 +215,26 @@ for run_number in range(15): #iterate to make multiple runs
             added_demand.datetime = pd.to_datetime(added_demand.datetime)
             added_demand = added_demand.resample('H', on='datetime').sum().reset_index()
             added_demand.demand = (1/60)*added_demand.demand # as part of the hourly conversion
+            tmp_added_u_demand = added_demand.copy(deep=True)
             
             #add controlled demand from previous groups
             if len(total_controlled_demand_running.total_demand) != 0:
                 temp_ctrl_run = total_controlled_demand_running.copy(deep=True)
                 temp_ctrl_run = temp_ctrl_run.resample('H', on='datetime').sum().reset_index()
                 temp_ctrl_run.total_demand = (1/4)*temp_ctrl_run.total_demand # as part of the hourly conversion, controlled demand 15 min increments
-                added_demand.demand += temp_ctrl_run.total_demand #add controlled portion (from prior loop)
+                displacement = np.random.uniform(0, 1, len(temp_ctrl_run.total_demand))
+                normal_noise = np.random.normal(0, 0.25 * np.max(tmp_added_u_demand.demand), len(temp_ctrl_run.total_demand))
+                displacement = displacement  * (np.sum(temp_ctrl_run.total_demand) - (np.sum(0.75*temp_ctrl_run.total_demand) +np.sum(0.25 * uncontrolled_demand_prior_groups.demand) + np.sum(normal_noise))) / np.sum(displacement)
+
+                added_demand.demand += 0.75*temp_ctrl_run.total_demand + 0.25 * uncontrolled_demand_prior_groups.demand + normal_noise + displacement
+
+
+                uncontrolled_demand_prior_groups.demand += tmp_added_u_demand.copy(deep=True).demand
+            else:
+                uncontrolled_demand_prior_groups = tmp_added_u_demand.copy(deep=True)
+            
+
+        # uncontrolled_demand_prior_group = tmp_added_demand.copy(deep=True)
 
             #convert to MW
             tic = time.time()
@@ -228,8 +244,8 @@ for run_number in range(15): #iterate to make multiple runs
             #instantiate grid model object and add demand
             grid1 = GridModel(year=future_year, reference_year=year, added_evs=False)
             grid1.add_demand(added_demand_mw)
-            minweek = np.maximum(total_uncontrolled_demand.loc[total_uncontrolled_demand.datetime.dt.year==year].datetime.dt.week.min()-2, 0)
-            maxweek = np.minimum(total_uncontrolled_demand.loc[total_uncontrolled_demand.datetime.dt.year==year].datetime.dt.week.max()+2, 51)
+            minweek = np.maximum(total_uncontrolled_demand.loc[total_uncontrolled_demand.datetime.dt.year==year].datetime.dt.isocalendar().week.min()-2, 0)
+            maxweek = np.minimum(total_uncontrolled_demand.loc[total_uncontrolled_demand.datetime.dt.year==year].datetime.dt.isocalendar().week.max()+2, 51)
             print('Weeks: ', minweek, maxweek)
 
             #run grid dispatch
@@ -274,10 +290,10 @@ for run_number in range(15): #iterate to make multiple runs
             for week in range(data.num_weeks):
                 #obtain time intervals and driver frequency
                 inds = model.controlled_charging_demand[control_folder_name].loc[(model.controlled_charging_demand[control_folder_name].datetime.dt.date >= data.mondays[week])&(model.controlled_charging_demand[control_folder_name].datetime.dt.date <= data.sundays[week])].index
-                dot_values = indices_df[data.mondays[week]][int(signal_num*uncontrolled_fraction[0]*n_evs_added):int((signal_num+1)*uncontrolled_fraction[0]*n_evs_added)].value_counts().sort_index().reindex(np.arange(1, num_vehicles+1), fill_value=0)
+                dot_values = indices_df[data.mondays[week]][int(signal_num*uncontrolled_fraction[0]*n_evs_added):int((signal_num+1)*uncontrolled_fraction[0]*n_evs_added)].value_counts().sort_index().reindex(np.arange(1, num_vehicles + 1), fill_value=0)
                 
                 #multiply drivers by frequency
-                model.controlled_charging_demand[control_folder_name].loc[inds, 'total_demand'] = model.controlled_charging_demand[control_folder_name].loc[inds, np.arange(1, num_vehicles+1).astype(str)].multiply(dot_values.values).sum(axis=1)
+                model.controlled_charging_demand[control_folder_name].loc[inds, 'total_demand'] = model.controlled_charging_demand[control_folder_name].loc[inds, np.arange(1, num_vehicles + 1).astype(str)].multiply(dot_values.values).sum(axis=1)
                 total_controlled_demand_temp = pd.concat((total_controlled_demand_temp, model.controlled_charging_demand[control_folder_name].loc[inds, ['datetime', 'total_demand']]), ignore_index=True)
 
             total_controlled_demand_temp.datetime = pd.to_datetime(total_controlled_demand_temp.datetime)
@@ -315,8 +331,8 @@ for run_number in range(15): #iterate to make multiple runs
             #instantiate grid model object and add demand
             grid1 = GridModel(year=future_year, reference_year=year, added_evs=False)
             grid1.add_demand(added_demand_mw)
-            minweek = np.maximum(total_controlled_demand.loc[total_controlled_demand.datetime.dt.year==year].datetime.dt.week.min()-2, 0)
-            maxweek = np.minimum(total_controlled_demand.loc[total_controlled_demand.datetime.dt.year==year].datetime.dt.week.max()+2, 51)
+            minweek = np.maximum(total_controlled_demand.loc[total_controlled_demand.datetime.dt.year==year].datetime.dt.isocalendar().week.min()-2, 0)
+            maxweek = np.minimum(total_controlled_demand.loc[total_controlled_demand.datetime.dt.year==year].datetime.dt.isocalendar().week.max()+2, 51)
             print('Week numbers: ', minweek,'-', maxweek)
 
             #run grid dispatch
