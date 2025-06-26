@@ -37,13 +37,21 @@ Instructions are provided to create a virtual environment created with .venv in 
 2) Download VSCode with build tools at https://code.visualstudio.com/download (works for Windows or Mac)
 3) To create a new virtual environment on VS Code, press View -> Command Palette and search for Python:Create New Environment. Click on Venv for the .venv virtual environment. 
 4) Download the correct package versions using the commands below:
+
 pip install pandas==1.3.1
+
 pip install scipy==1.6.3
+
 pip install cvxpy==1.2.1
+
 pip install matplotlib==3.7
+
 pip install scikit-learn==1.4.0
+
 pip install ipykernel
+
 pip install openpyxl
+
 pip install mosek
 
 #### Package Versions
