@@ -3,7 +3,7 @@
 [![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.15748366.svg)](https://doi.org/10.5281/zenodo.15748366)
 
 ## Problem Statement
-
+ 
 Managing electric vehicle (EV) charging to reduce emissions benefits both EVs and the grid: (1) to further decarbonize transportation and make the switch from an ICE to an EV better; and (2) to use the flexibility in EV charging as a tool to acclerate the grid's transition and the integration of lower carbon resources. 
 
 Many authors have argued that marginal and average emission factors (MEFs and AEFs) are the best signal for this managed charging. In this research project we aim to answer the questions: 
