@@ -35,8 +35,8 @@ Instructions are provided to create a virtual environment created with .venv in 
 
 1) Download Python 3.9.13 at https://www.python.org/downloads/release/python-390/ or from the Microsoft Store. Note that this code has only been tested on 3.9.13, not 3.9.X.
 2) Download VS Code with build tools at https://code.visualstudio.com/download (works for Windows or Mac)
-3) To create a new virtual environment on VS Code, press View -> Command Palette and search for Python:Create New Environment. Click on Venv for the .venv virtual environment. 
-4) Install the Python and Jupyter extensions on VS Code.
+3) Install the Python and Jupyter extensions on VS Code.
+4) To create a new virtual environment on VS Code, press View -> Command Palette and search for Python:Create New Environment. Click on Venv for the .venv virtual environment. 
 5) Download the correct package versions using the command below, inserting the folder path:
 
 c:/[folder_path]/cascading-mef-ev-charging/.venv/Scripts.python.exe -m pip install pandas==1.3.1 scipy==1.6.3 cvxpy==1.2.1 matplotlib==3.7 scikit-learn==1.4.0 ipykernel openpyxl mosek
