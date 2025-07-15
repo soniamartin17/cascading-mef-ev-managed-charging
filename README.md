@@ -31,34 +31,21 @@ This code is licensed under the CC BY-NC-SA 4.0 license. The legal code can be f
 
 ### Initializing Python Environment
 
-Instructions are provided to create a virtual environment created with .venv in Visual Studio code on a Windows PC.
+Instructions are provided to create a virtual environment created with .venv in Visual Studio Code on a Windows PC.
 
-1) Download Python 3.9 at https://www.python.org/downloads/release/python-390/ or from the Microsoft Store.
-2) Download VSCode with build tools at https://code.visualstudio.com/download (works for Windows or Mac)
+1) Download Python 3.9.13 at https://www.python.org/downloads/release/python-390/ or from the Microsoft Store. Note that this code has only been tested on 3.9.13, not 3.9.X.
+2) Download VS Code with build tools at https://code.visualstudio.com/download (works for Windows or Mac)
 3) To create a new virtual environment on VS Code, press View -> Command Palette and search for Python:Create New Environment. Click on Venv for the .venv virtual environment. 
-4) Download the correct package versions using the commands below:
+4) Install the Python and Jupyter extensions on VS Code.
+5) Download the correct package versions using the command below, inserting the folder path:
 
-pip install pandas==1.3.1
-
-pip install scipy==1.6.3
-
-pip install cvxpy==1.2.1
-
-pip install matplotlib==3.7
-
-pip install scikit-learn==1.4.0
-
-pip install ipykernel
-
-pip install openpyxl
-
-pip install mosek
+c:/[folder_path]/cascading-mef-ev-charging/.venv/Scripts.python.exe -m pip install pandas==1.3.1 scipy==1.6.3 cvxpy==1.2.1 matplotlib==3.7 scikit-learn==1.4.0 ipykernel openpyxl mosek
 
 #### Package Versions
 
-If creating your own virtual environment, please use these packages to ensure correct dependencies. Note: the exact Python and Pandas versions are important for the grid object "pickling". After downloading the packages, you should have Numpy version 1.22.4. This should be installed automatically with the scikit-learn installation; this is why packages must be installed in the specified order.
+If creating your own virtual environment, please use these packages to ensure correct dependencies. Note: the exact Python and Pandas versions are important for the grid object "pickling". After downloading the packages, you should have Numpy version 1.22.4. This should be installed automatically with the scikit-learn installation; this is why packages must be installed in the specified order if they are installed sequentially.
 
-Python 3.9
+Python 3.9.13
 
 Pandas 1.3.1
 
