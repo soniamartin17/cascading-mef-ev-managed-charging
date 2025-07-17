@@ -1,6 +1,6 @@
 # Cascading Marginal Emissions Factor Managed Charging
 
-[![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.15748366.svg)](https://doi.org/10.5281/zenodo.15748366)
+[![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.16051566.svg)](https://doi.org/10.5281/zenodo.16051566)
 
 ## Problem Statement
  
