@@ -31,15 +31,35 @@ This code is licensed under the CC BY-NC-SA 4.0 license. The legal code can be f
 
 ### Initializing Python Environment
 
+Windows PC instructions:
 Instructions are provided to create a virtual environment created with .venv in Visual Studio Code on a Windows PC.
 
 1) Download Python 3.9.13 at https://www.python.org/downloads/release/python-390/ or from the Microsoft Store. Note that this code has only been tested on 3.9.13, not 3.9.X.
 2) Download VS Code with build tools at https://code.visualstudio.com/download (works for Windows or Mac)
 3) Install the Python and Jupyter extensions on VS Code.
 4) To create a new virtual environment on VS Code, press View -> Command Palette and search for Python:Create New Environment. Click on Venv for the .venv virtual environment. 
-5) Download the correct package versions using the command below, inserting the folder path:
+5) Download the correct package versions by running the command below in the terminal, inserting the folder path:
 
 c:/[folder_path]/cascading-mef-ev-charging/.venv/Scripts.python.exe -m pip install pandas==1.3.1 scipy==1.6.3 cvxpy==1.2.1 matplotlib==3.7 scikit-learn==1.4.0 ipykernel openpyxl mosek
+
+Note: if the terminal location is already within the virtual environment, this command can just begin with pip install.
+
+Mac instructions:
+Instructions are provided to create a virtual environment created with .venv in Visual Studio Code on a Mac with an M1 processor. Some of these steps may not be necessary with a different processor. With an M1 processor, it is necessary to run and download the packages on the x86_64 architecture. 
+
+1) Download the Python 3.9.13 at https://www.python.org/downloads/macos/ with the Intel installer. This is crucial to use the Intel installer to the code runs on the right architecture. Note that this code has only been tested on 3.9.13, not 3.9.X.
+2) Download VS Code with build tools at https://code.visualstudio.com/download (works for Windows or Mac). Open VSCode (not Rosetta mode).
+3) Install the Python and Jupyter extensions on VS Code.
+4) To create a new virtual environment on VS Code, press View -> Command Palette and search for Python:Create New Environment. Click on Venv for the .venv virtual environment. 
+5) In the terminal, run the following commands one by one. The final command should print "i386" or "x86_64".
+arch -x86_64 zsh
+arch -x86_64 .venv/bin/python -m pip install pandas==1.3.1 scipy==1.6.3 cvxpy==1.2.1 matplotlib==3.7 scikit-learn==1.4.0 ipykernel openpyxl mosek
+arch -x86_64 .venv/bin/python -m pip uninstall psutil
+arch -x86_64 .venv/bin/python -m pip install --no-binary :all: psutil
+arch -x86_64 .venv/bin/python -m ipykernel install --user --name my_x86_venv --display-name "Python (x86_64 venv)"
+.venv/bin/python -c "import platform; print(platform.machine())"
+6) Open the notebook 0_run_experiment.ipynb and , if present, select the kernel "Python (x86_64 venv) (Python 3.9.13)" or something with "Python (x86_64 venv)" in the name. If those are not present, select the Python 3.9.13 kernel.
+
 
 #### Package Versions
 
@@ -62,6 +82,8 @@ ipykernel
 Openpyxl
 
 Mosek 11.0.22
+
+Numpy 1.22.4
 
 ### Optimization Solver
 
