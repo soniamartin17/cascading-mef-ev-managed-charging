@@ -1,6 +1,6 @@
 # Cascading Marginal Emissions Factor Managed Electric Vehicle Charging
 
-[![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.16051566.svg)](https://doi.org/10.5281/zenodo.16051566)
+[![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.17144895.svg)](https://doi.org/10.5281/zenodo.17144895)
 
 ## Problem Statement
  
