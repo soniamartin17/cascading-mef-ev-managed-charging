@@ -1,4 +1,4 @@
-# Cascading Marginal Emissions Factor Managed Charging
+# Cascading Marginal Emissions Factor Managed Electric Vehicle Charging
 
 [![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.16051566.svg)](https://doi.org/10.5281/zenodo.16051566)
 
@@ -19,9 +19,9 @@ Please contact Sonia Martin (soniamartin@stanford.edu) with questions about this
 
 Research team: Sonia Martin (Stanford), Siobhan Powell (ETH Zurich), and Ram Rajagopal (Stanford) 
 
-This research project was funded by Volkswagen and the Stanford Bits & Watt's EV50 Initiative. 
+This research project was funded by Volkswagen Group of America and the Stanford Bits & Watt's EV50 Initiative. 
 
-This code accompanies a paper submitted to Nature Communications entitled "Cascading Marginal Emissions Signals for Green Charging with Growing Electric Vehicle Adoption".
+This code accompanies a paper published in Nature Communications entitled "Cascading Marginal Emissions Signals for Green Charging with Growing Electric Vehicle Adoption".
 
 ## License 
 
@@ -63,7 +63,7 @@ arch -x86_64 .venv/bin/python -m ipykernel install --user --name my_x86_venv --d
 
 #### Package Versions
 
-If creating your own virtual environment, please use these packages to ensure correct dependencies. Note: the exact Python and Pandas versions are important for the grid object "pickling". After downloading the packages, you should have Numpy version 1.22.4. This should be installed automatically with the scikit-learn installation; this is why packages must be installed in the specified order if they are installed sequentially.
+If creating your own virtual environment, please use these packages to ensure correct dependencies. Note: the exact Python and Pandas versions are important for the grid object "pickling". After downloading the packages, you should have Numpy version 1.22.4. This should be installed automatically with the scikit-learn installation; this is why packages must be installed in the specified order if they are installed sequentially. Installation should take < 5 min.
 
 Python 3.9.13
 
@@ -99,7 +99,7 @@ This repository contains three folders:
 
 The GridInputData folder includes EIA, CEMS, eGRID, FERC, and other data needed to generate the grid model. The output object is saved in the Data folder.
 
-The Data folder contains synthetic EV data and, once the optimization is run, managed charging optimization results. For privacy and legal reasons, we cannot publish the actual raw or processed data used for this project.
+The Data folder contains synthetic EV data and, once the optimization is run, managed charging optimization results. The full dataset used for this project is located at https://dx.doi.org/10.17632/dszk8rzfjx.1. The results presented in the paper are simulated based on January 2020 and July 2020 data; these results can be replicated by editing the month variable in the 0_run_experiment notebook. Since original location data are not publicly available, preprocessing steps 3 and 4 should be skipped, and the processed data file can be input directly into step 5 (calculate_baseline).
  
 The Figures folder contains notebooks to generate the figures contained in the paper submission. The figures (except figure S4) are coded to plot agnostic of existence of a charging timer in the results.
 
@@ -117,7 +117,7 @@ Run all code cells in 0_run_experiment.ipynb. The file requires the user to choo
 
 Note that the Mosek check is important to ensure correct results. (The optimization code will not throw an error if the Mosek file is missing, so you should confirm with the code block check instead.)
 
-By default, the simulation will run for the set of the number of EVs in the paper and will run for 15 trials. These values can be changed in the "run_optimization" .py files themselves.
+By default, the simulation will run for the set of the number of EVs in the paper and will run for 15 trials. These values can be changed in the "run_optimization" .py files themselves. Running a single trial for all 748 vehicles in the dataset takes approximately 1 hour to run for each week of the simulation 
 
 Once the code has completed, the results will be saved in named folders under the Data folder.
 
